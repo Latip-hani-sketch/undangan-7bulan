@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Syukuran 7 Bulan - Latip & Hani</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f7f5f0;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HALAMAN SAMPUL (COVER) */
+        .cover-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #fdfbf7 0%, #ede8df 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
+            text-align: center;
+        }
+        
+        /* CONTAINER UTAMA DENGAN ORNAMEN */
+        .container {
+            background-color: #ffffff;
+            padding: 50px 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(140, 123, 101, 0.15);
+            max-width: 420px;
+            width: 88%;
+            border: 1px solid rgba(212, 197, 171, 0.5);
+            box-sizing: border-box;
+            position: relative;
+            animation: containerAppear 1.2s ease-out forwards;
+        }
+
+        /* Border Ornamen Bagian Dalam */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            border: 1px solid #d4c5ab;
+            border-radius: 12px;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        @keyframes containerAppear {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* TIPOGRAFI / FONT */
+        .sub-title-arabic {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 20px;
+            color: #8c7b65;
+            margin-bottom: 5px;
+            font-weight: 400;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #2c2c2c;
+            margin: 10px 0 0 0;
+        }
+
+        .sub-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #8c7b65;
+            margin-top: 2px;
+            margin-bottom: 30px;
+            letter-spacing: 4px;
+            font-weight: 400;
+        }
+
+        .nama-pasangan {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #4a4a4a;
+            margin: 15px 0;
+            font-style: italic;
+        }
+
+        .yth-text {
+            font-size: 13px;
+            color: #8a8a8a;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .nama-tamu {
+            font-size: 18px;
+            color: #3a3a3a;
+            font-weight: 600;
+            margin-top: 5px;
+            margin-bottom: 35px;
+            line-height: 1.4;
+        }
+
+        /* TOMBOL BUKA DENGAN EFEK KLIK */
+        .btn-buka {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            background-color: #8c7b65;
+            color: #ffffff;
+            padding: 14px 40px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(140, 123, 101, 0.4);
+            border: none;
+            outline: none;
+            overflow: hidden;
+        }
+
+        .btn-buka:hover {
+            background-color: #736450;
+            box-shadow: 0 8px 20px rgba(140, 123, 101, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-buka:active {
+            transform: translateY(1px) scale(0.95);
+            box-shadow: 0 3px 10px rgba(140, 123, 101, 0.4);
+        }
+
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleEffect 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* AREA PEMUTAR VIDEO */
+        .video-container {
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            display: none;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cover" class="cover-screen">
+        <div class="container">
+            <p class="sub-title-arabic">Walimatul Hamli</p>
+            <h1 class="main-title">UNDANGAN SYUKURAN</h1>
+            <h2 class="sub-title">7 BULANAN</h2>
+            
+            <div class="nama-pasangan">Latip & Hani</div>
+            
+            <hr style="width: 40px; border: 0; border-top: 1px solid #d4c5ab; margin: 25px auto;">
+
+            <p class="yth-text">Kepada Yth.</p>
+            <div id="namaTamu" class="nama-tamu">Bapak/Ibu/Saudara/i</div>
+            
+            <button onclick="bukaUndangan(event)" class="btn-buka">
+                📩 BUKA UNDANGAN
+            </button>
+        </div>
+    </div>
+
+    <div id="videoArea" class="video-container">
+        <iframe id="player" src="" allow="autoplay" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        // JAVASCRIPT UNTUK MEMBACA NAMA DARI LINK (URL)
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const nama = urlParams.get('to'); // Mencari kata '?to=NamaTamu' di link
+            
+            if (nama) {
+                // Mengubah text "Bapak/Ibu/Saudara/i" menjadi nama yang ada di link, otomatis rapi
+                document.getElementById("namaTamu").innerText = decodeURIComponent(nama);
+            }
+        }
+
+        function bukaUndangan(event) {
+            var btn = event.currentTarget;
+
+            var ripple = document.createElement("span");
+            ripple.classList.add("ripple");
+            btn.appendChild(ripple);
+            
+            var rect = btn.getBoundingClientRect();
+            var x = event.clientX - rect.left;
+            var y = event.clientY - rect.top;
+            
+            ripple.style.left = x + "px";
+            ripple.style.top = y + "px";
+
+            var videoArea = document.getElementById("videoArea");
+            videoArea.style.display = "block";
+
+            var player = document.getElementById("player");
+            player.src = "https://drive.google.com/file/d/1mG4_VruVqyNaQR0QKUcf8NL3fjbpL28fPcjrErcg91U/preview?autoplay=1";
+
+            var cover = document.getElementById("cover");
+            
+            setTimeout(function() {
+                cover.style.opacity = "0";
+                cover.style.transform = "scale(1.1)";
+                
+                setTimeout(function() {
+                    cover.style.visibility = "hidden";
+                    ripple.remove();
+                }, 1000);
+            }, 200);
+        }
+    </script>
+
+</body>
+</html>
