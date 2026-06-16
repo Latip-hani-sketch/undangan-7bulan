@@ -17,12 +17,12 @@
             height: 100%;
             font-family: 'Montserrat', sans-serif;
             background-color: #f7f5f0;
+            overflow: hidden; /* Mengunci halaman agar tidak bisa digulir manual sebelum tombol diklik */
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Mengunci posisi flex hanya untuk cover awal */
+        /* Mengunci posisi flex untuk cover awal */
         .body-locked {
-            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -178,6 +178,7 @@
         .main-content-wrapper {
             display: none;
             width: 100%;
+            height: 100%;
             position: relative;
             background-color: #1a1a1a;
         }
@@ -201,18 +202,53 @@
             object-fit: cover;
         }
 
-        /* KONTEN MAPS YANG MUNCUL SAAT DI-SCROLL KE BAWAH */
+        /* TOMBOL "KLIK DISINI UNTUK LOKASI" (MELAYANG DI ATAS VIDEO) */
+        .btn-trigger-maps {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            padding: 12px 26px;
+            background-color: rgba(140, 123, 101, 0.9); /* Menggunakan warna dasar tema undangan */
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .btn-trigger-maps:hover {
+            background-color: rgba(115, 100, 80, 1);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+        }
+
+        /* KONTEN MAPS YANG MUNCUL DARI BAWAH (ANIMASI SLIDE UP) */
         .maps-section {
-            position: relative;
-            margin-top: 100vh;
-            z-index: 2;
+            position: fixed;
+            bottom: -100vh; /* Awalnya bersembunyi di bawah layar */
+            left: 0;
+            z-index: 10;
             width: 100%;
-            background: linear-gradient(to bottom, rgba(253,251,247,0.95) 0%, #ede8df 100%);
-            padding: 60px 0;
+            background: linear-gradient(to bottom, rgba(253,251,247,0.98) 0%, #ede8df 100%);
+            padding: 50px 0 60px 0;
             text-align: center;
-            box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
-            border-top-left-radius: 25px;
-            border-top-right-radius: 25px;
+            box-shadow: 0 -15px 35px rgba(0,0,0,0.4);
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            transition: bottom 0.8s cubic-bezier(0.25, 1, 0.5, 1); /* Efek slide naik yang smooth */
+        }
+
+        /* Kelas pemicu animasi naik */
+        .maps-section.show {
+            bottom: 0;
         }
 
         .maps-container {
@@ -225,6 +261,20 @@
             margin: 0 auto;
             border: 1px solid rgba(212, 197, 171, 0.4);
             box-sizing: border-box;
+            position: relative;
+        }
+
+        /* Tombol Tutup Panel Maps X */
+        .btn-close-maps {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #888888;
+            cursor: pointer;
+            font-weight: bold;
         }
 
         .maps-title {
@@ -263,35 +313,6 @@
             transform: translateY(-2px);
         }
 
-        /* PETUNJUK UTK SCROLL DENGAN LATAR TRANSPARAN PREMIUM (SUDAH DIPERBAIKI) */
-        .scroll-hint {
-            position: fixed;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1;
-            color: #ffffff;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            padding: 10px 22px;
-            background-color: rgba(0, 0, 0, 0.5); /* Hitam transparan tipis ala reels */
-            border-radius: 20px;
-            backdrop-filter: blur(4px); /* Efek blur kaca blur di belakangnya */
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            animation: bounce 2s infinite;
-            pointer-events: none;
-            opacity: 0.9;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
-            40% { transform: translate(-50%, -8px); }
-            60% { transform: translate(-50%, -4px); }
-        }
-
         /* RESPONSIVITAS TAMPILAN PC */
         @media screen and (min-width: 600px) {
             video {
@@ -299,7 +320,11 @@
                 box-shadow: 0 0 30px rgba(0,0,0,0.8);
             }
             .maps-section {
-                background: #ede8df;
+                left: 50%;
+                transform: translateX(-50%);
+                max-width: 450px;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
             }
         }
     </style>
@@ -337,14 +362,17 @@
             </video>
         </div>
 
-        <!-- PETUNJUK SCROLL PREMIUM -->
-        <div id="scrollHint" class="scroll-hint">
-            ▼ LOKASI ACARA (GULIR KE BAWAH)
-        </div>
+        <!-- TOMBOL DI ATAS VIDEO SESUAI PERMINTAAN -->
+        <button id="triggerBtn" onclick="tampilkanLokasi()" class="btn-trigger-maps">
+            📍 KliK Disini Untuk Lokasi
+        </button>
 
-        <!-- GOOGLE MAPS SECTION -->
-        <div class="maps-section">
+        <!-- GOOGLE MAPS PANEL SECTION (SLIDE UP) -->
+        <div id="mapsPanel" class="maps-section">
             <div class="maps-container">
+                <!-- Tombol silang untuk menutup kembali panel maps jika ingin lihat videonya lagi -->
+                <button onclick="tutupLokasi()" class="btn-close-maps">✕</button>
+                
                 <div class="maps-title">Lokasi Acara</div>
                 <p class="maps-desc">
                     Kehadiran Bapak/Ibu/Saudara/i merupakan pelengkap kebahagiaan kami.<br>
@@ -380,8 +408,6 @@
             
             ripple.style.left = x + "px";
             ripple.style.top = y + "px";
-
-            document.body.classList.remove("body-locked");
             
             var mainWrapper = document.getElementById("mainWrapper");
             mainWrapper.style.display = "block";
@@ -402,15 +428,23 @@
             }, 200);
         }
 
-        window.onscroll = function() {
-            var hint = document.getElementById("scrollHint");
-            if (window.pageYOffset > 50) {
-                hint.style.opacity = "0";
-                hint.style.transition = "opacity 0.5s ease";
-            } else {
-                hint.style.opacity = "0.9";
-            }
-        };
+        // Fungsi memunculkan panel lokasi dari bawah saat tombol diklik
+        function tampilkanLokasi() {
+            var panel = document.getElementById("mapsPanel");
+            var btn = document.getElementById("triggerBtn");
+            panel.classList.add("show");
+            btn.style.opacity = "0"; // Sembunyikan tombol pemicu sementara saat panel terbuka
+            btn.style.pointerEvents = "none";
+        }
+
+        // Fungsi menyembunyikan kembali panel lokasi jika tamu ingin menonton videonya lagi
+        function tutupLokasi() {
+            var panel = document.getElementById("mapsPanel");
+            var btn = document.getElementById("triggerBtn");
+            panel.classList.remove("show");
+            btn.style.opacity = "1"; // Munculkan kembali tombol pemicunya
+            btn.style.pointerEvents = "auto";
+        }
     </script>
 
 </body>
