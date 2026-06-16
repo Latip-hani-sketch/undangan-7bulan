@@ -19,6 +19,9 @@
             background-color: #f7f5f0;
             overflow: hidden;
             -webkit-font-smoothing: antialiased;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         /* HALAMAN SAMPUL (COVER) */
@@ -167,23 +170,33 @@
             to { transform: scale(4); opacity: 0; }
         }
 
-        /* AREA PEMUTAR VIDEO ASLI FULL SCREEN */
+        /* AREA PEMUTAR VIDEO YANG SUDAH RESPONSIF PC & HP */
         .video-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #000000;
+            background-color: #1a1a1a; /* Latar belakang gelap estetik di PC */
             display: none;
             z-index: 1;
         }
         
-        /* Memaksa video HP memenuhi seluruh layar secara total tanpa sisa hitam */
+        /* Pengaturan ukuran video agar proporsional di PC dan HP */
         video {
+            display: block;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ini kunci utama pemotong kotak hitam */
+            margin: 0 auto;
+            object-fit: cover;
+        }
+
+        /* KHUSUS TAMPILAN PC / LAYAR LEBAR */
+        @media screen and (min-width: 600px) {
+            video {
+                max-width: 450px; /* Membatasi lebar video di PC seukuran layar HP */
+                box-shadow: 0 0 30px rgba(0,0,0,0.8); /* Memberi efek bayangan di kanan kiri video */
+            }
         }
     </style>
 </head>
@@ -209,8 +222,7 @@
     </div>
 
     <div id="videoArea" class="video-container">
-        <!-- Menggunakan tag video HTML5 murni yang tersimpan di GitHub -->
-        <video id="myVideo" playsinline loop>
+        <video id="myVideo" playsinline loop controlslist="nodownload">
             <source src="undangan.mp4" type="video/mp4">
             Browser Anda tidak mendukung pemutar video ini.
         </video>
@@ -242,7 +254,6 @@
             var videoArea = document.getElementById("videoArea");
             videoArea.style.display = "block";
 
-            // Jalankan video secara otomatis langsung dari server GitHub Anda
             var video = document.getElementById("myVideo");
             video.play();
 
