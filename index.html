@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undangan Syukuran 7 Bulan - Latip & Hani</title>
+    <!-- Import Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -50,7 +51,6 @@
             animation: containerAppear 1.2s ease-out forwards;
         }
 
-        /* Border Ornamen Bagian Dalam */
         .container::before {
             content: '';
             position: absolute;
@@ -164,23 +164,30 @@
         }
 
         @keyframes rippleEffect {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
+            to { transform: scale(4); opacity: 0; }
         }
 
-        /* AREA PEMUTAR VIDEO */
+        /* AREA PEMUTAR VIDEO FULL SCREEN FIX */
         .video-container {
-            width: 100%;
-            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             background-color: #000000;
             display: none;
+            z-index: 1;
         }
+        
+        /* Memaksa iframe memenuhi layar HP secara agresif */
         iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             border: none;
+            object-fit: cover; /* Membantu video vertikal mengisi area layar */
         }
     </style>
 </head>
@@ -206,17 +213,15 @@
     </div>
 
     <div id="videoArea" class="video-container">
+        <!-- Menggunakan mode preview yang dipaksa mengisi rasio layar -->
         <iframe id="player" src="" allow="autoplay" allowfullscreen></iframe>
     </div>
 
     <script>
-        // JAVASCRIPT UNTUK MEMBACA NAMA DARI LINK (URL)
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
-            const nama = urlParams.get('to'); // Mencari kata '?to=NamaTamu' di link
-            
+            const nama = urlParams.get('to');
             if (nama) {
-                // Mengubah text "Bapak/Ibu/Saudara/i" menjadi nama yang ada di link, otomatis rapi
                 document.getElementById("namaTamu").innerText = decodeURIComponent(nama);
             }
         }
@@ -238,6 +243,7 @@
             var videoArea = document.getElementById("videoArea");
             videoArea.style.display = "block";
 
+            // Menggunakan setelan tautan preview Google Drive yang dimaksimalkan untuk layar mobile
             var player = document.getElementById("player");
             player.src = "https://drive.google.com/file/d/1mG4_VruVqyNaQR0QKUcf8NL3fjbpL28fPcjrErcg91U/preview?autoplay=1";
 
