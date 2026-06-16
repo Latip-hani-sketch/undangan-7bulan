@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Syukuran 7 Bulan - Latip & Hani</title>
+    <!-- Import Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f7f5f0;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .body-locked {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* HALAMAN SAMPUL (COVER) */
+        .cover-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #fdfbf7 0%, #ede8df 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
+            text-align: center;
+        }
+        
+        .container {
+            background-color: #ffffff;
+            padding: 50px 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(140, 123, 101, 0.15);
+            max-width: 420px;
+            width: 88%;
+            border: 1px solid rgba(212, 197, 171, 0.5);
+            box-sizing: border-box;
+            position: relative;
+            animation: containerAppear 1.2s ease-out forwards;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            border: 1px solid #d4c5ab;
+            border-radius: 12px;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        @keyframes containerAppear {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sub-title-arabic {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 20px;
+            color: #8c7b65;
+            margin-bottom: 5px;
+            font-weight: 400;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #2c2c2c;
+            margin: 10px 0 0 0;
+        }
+
+        .sub-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #8c7b65;
+            margin-top: 2px;
+            margin-bottom: 30px;
+            letter-spacing: 4px;
+            font-weight: 400;
+        }
+
+        .nama-pasangan {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #4a4a4a;
+            margin: 15px 0;
+            font-style: italic;
+        }
+
+        .yth-text {
+            font-size: 13px;
+            color: #8a8a8a;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .nama-tamu {
+            font-size: 18px;
+            color: #3a3a3a;
+            font-weight: 600;
+            margin-top: 5px;
+            margin-bottom: 35px;
+            line-height: 1.4;
+        }
+
+        .btn-buka {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            background-color: #8c7b65;
+            color: #ffffff;
+            padding: 14px 40px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(140, 123, 101, 0.4);
+            border: none;
+            outline: none;
+            overflow: hidden;
+        }
+
+        .btn-buka:hover {
+            background-color: #736450;
+            box-shadow: 0 8px 20px rgba(140, 123, 101, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-buka:active {
+            transform: translateY(1px) scale(0.95);
+            box-shadow: 0 3px 10px rgba(140, 123, 101, 0.4);
+        }
+
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleEffect 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes rippleEffect {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        /* MAIN WRAPPER */
+        .main-content-wrapper {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background-color: #1a1a1a;
+        }
+
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #000000;
+            z-index: 1;
+        }
+        
+        video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            object-fit: cover;
+        }
+
+        /* TOMBOL PEMICU MELAYANG */
+        .btn-trigger-maps {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            padding: 12px 26px;
+            background-color: rgba(140, 123, 101, 0.95);
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .btn-trigger-maps:hover {
+            background-color: rgba(115, 100, 80, 1);
+            transform: translateX(-50%) translateY(-2px);
+        }
+
+        /* PANEL LOKASI DAN INFORMASI CADANGAN (SLIDE UP) */
+        .maps-section {
+            position: fixed;
+            bottom: -100vh;
+            left: 0;
+            z-index: 10;
+            width: 100%;
+            height: 85vh; /* Panel dibuat tinggi agar muat info teks tambahan */
+            background: linear-gradient(to bottom, rgba(253,251,247,0.99) 0%, #f4f0e6 100%);
+            box-shadow: 0 -15px 35px rgba(0,0,0,0.4);
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            transition: bottom 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            overflow-y: auto; /* Mengizinkan scroll di dalam panel jika layar kecil */
+        }
+
+        .maps-section.show {
+            bottom: 0;
+        }
+
+        .maps-content-scroller {
+            padding: 40px 0 60px 0;
+            text-align: center;
+        }
+
+        .maps-container {
+            background-color: #ffffff;
+            padding: 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(140, 123, 101, 0.05);
+            max-width: 400px;
+            width: 88%;
+            margin: 0 auto;
+            border: 1px solid rgba(212, 197, 171, 0.3);
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .btn-close-maps {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #aaaaaa;
+            cursor: pointer;
+        }
+
+        /* TEKS DETAIL ACARA DIGITAL (CADANGAN SINYAL LEMOT) */
+        .info-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #8c7b65;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .info-detail-box {
+            font-size: 14px;
+            color: #4a4a4a;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            background-color: #faf9f6;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid #d4c5ab;
+            text-align: left;
+        }
+
+        .maps-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: #2c2c2c;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* DESAIN GROUP TOMBOL AKSI */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .btn-action {
+            display: inline-block;
+            text-decoration: none;
+            width: 85%;
+            padding: 13px 0;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-maps {
+            background-color: #8c7b65;
+            color: #ffffff;
+            box-shadow: 0 5px 15px rgba(140, 123, 101, 0.3);
+        }
+
+        .btn-calendar {
+            background-color: #ffffff;
+            color: #8c7b65;
+            border: 1px solid #8c7b65;
+        }
+
+        .btn-maps:hover { background-color: #736450; }
+        .btn-calendar:hover { background-color: #faf9f6; }
+
+        @media screen and (min-width: 600px) {
+            video { max-width: 450px; box-shadow: 0 0 30px rgba(0,0,0,0.8); }
+            .maps-section { left: 50%; transform: translateX(-50%); max-width: 450px; }
+        }
+    </style>
+</head>
+<body class="body-locked">
+
+    <!-- COVERS SCREEN -->
+    <div id="cover" class="cover-screen">
+        <div class="container">
+            <p class="sub-title-arabic">Walimatul Hamli</p>
+            <h1 class="main-title">UNDANGAN SYUKURAN</h1>
+            <h2 class="sub-title">7 BULANAN</h2>
+            
+            <div class="nama-pasangan">Latip & Hani</div>
+            
+            <hr style="width: 40px; border: 0; border-top: 1px solid #d4c5ab; margin: 25px auto;">
+
+            <p class="yth-text">Kepada Yth.</p>
+            <div id="namaTamu" class="nama-tamu">Bapak/Ibu/Saudara/i</div>
+            
+            <button onclick="bukaUndangan(event)" class="btn-buka">
+                📩 BUKA UNDANGAN
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN WRAPPER -->
+    <div id="mainWrapper" class="main-content-wrapper">
+        
+        <!-- VIDEO BACKGROUND SECTION -->
+        <div class="video-container">
+            <!-- Ditambahkan mute otomatis di video agar musik cadangan .mp3 lancar tanpa bentrok -->
+            <video id="myVideo" playsinline loop muted controlslist="nodownload">
+                <source src="undangan.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- MUSIK CADANGAN ELEMEN AUDIO -->
+        <audio id="myAudio" loop>
+            <source src="audio.mp3" type="audio/mp3">
+        </audio>
+
+        <!-- TOMBOL DI ATAS VIDEO -->
+        <button id="triggerBtn" onclick="tampilkanLokasi()" class="btn-trigger-maps">
+            📍 Info Acara & Lokasi
+        </button>
+
+        <!-- GOOGLE MAPS PANEL SECTION (SLIDE UP) -->
+        <div id="mapsPanel" class="maps-section">
+            <div class="maps-content-scroller">
+                <div class="maps-container">
+                    <button onclick="tutupLokasi()" class="btn-close-maps">✕</button>
+                    
+                    <!-- 1. INFORMASI TEKS DIGITAL (CADANGAN) -->
+                    <div class="info-title">Detail Acara</div>
+                    <div class="info-detail-box">
+                        📅 <b>Hari / Tanggal:</b> Minggu, 21 Juni 2026<br>
+                        ⏰ <b>Waktu:</b> 13.00 WIB s/d Selesai<br>
+                        📍 <b>Alamat:</b> Jl. Raya Kalimulya, Gg. Pedati / Jl. H. Thabronih, RT 02/04 No. 29, Kel. Kalimulya, Kec. Cilodong.
+                    </div>
+                    
+                    <!-- 2. TOMBOL AKSI GOOGLE MAPS & KALENDER -->
+                    <div class="maps-title">Navigasi Lokasi</div>
+                    <div class="button-group">
+                        <!-- Tombol Buka Google Maps -->
+                        <a href="https://maps.app.goo.gl/GFUSHVVayi59fsnn6?g_st=ic" target="_blank" class="btn-action btn-maps">
+                            📍 Buka Google Maps
+                        </a>
+                        
+                        <!-- Tombol Simpan Tanggal ke Google Calendar Otomatis (Minggu, 21 Juni 2026) -->
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Syukuran+7+Bulanan+Latip+%26+Hani&dates=20260621T123000/20260621T160000&details=Acara+Syukuran+7+Bulanan+(Walimatul+Hamli)+Kehamilan+Hani.&location=Jl.+Raya+Kalimulya,+Gg.+Pedati,+RT+02/04+No.+29,+Cilodong" target="_blank" class="btn-action btn-calendar">
+                            📅 Simpan ke Kalender
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const nama = urlParams.get('to');
+            if (nama) {
+                document.getElementById("namaTamu").innerText = decodeURIComponent(nama);
+            }
+        }
+
+        function bukaUndangan(event) {
+            var btn = event.currentTarget;
+
+            var ripple = document.createElement("span");
+            ripple.classList.add("ripple");
+            btn.appendChild(ripple);
+            
+            var rect = btn.getBoundingClientRect();
+            var x = event.clientX - rect.left;
+            var y = event.clientY - rect.top;
+            
+            ripple.style.left = x + "px";
+            ripple.style.top = y + "px";
+            
+            var mainWrapper = document.getElementById("mainWrapper");
+            mainWrapper.style.display = "block";
+
+            // Putar video background
+            var video = document.getElementById("myVideo");
+            video.play();
+
+            // Jalankan musik audio cadangan secara paksa pasca interaksi tombol (Anti-Mute Browser)
+            var audio = document.getElementById("myAudio");
+            audio.play().catch(function(error) {
+                console.log("Autoplay dicegah oleh browser, suara menggunakan video bawaan.");
+            });
+
+            var cover = document.getElementById("cover");
+            
+            setTimeout(function() {
+                cover.style.opacity = "0";
+                cover.style.transform = "scale(1.1)";
+                
+                setTimeout(function() {
+                    cover.style.visibility = "hidden";
+                    ripple.remove();
+                }, 1000);
+            }, 200);
+        }
+
+        function tampilkanLokasi() {
+            document.getElementById("mapsPanel").classList.add("show");
+            var btn = document.getElementById("triggerBtn");
+            btn.style.opacity = "0";
+            btn.style.pointerEvents = "none";
+        }
+
+        function tutupLokasi() {
+            document.getElementById("mapsPanel").classList.remove("show");
+            var btn = document.getElementById("triggerBtn");
+            btn.style.opacity = "1";
+            btn.style.pointerEvents = "auto";
+        }
+    </script>
+
+</body>
+</html>
