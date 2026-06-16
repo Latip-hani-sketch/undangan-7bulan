@@ -167,27 +167,23 @@
             to { transform: scale(4); opacity: 0; }
         }
 
-        /* AREA PEMUTAR VIDEO FULL SCREEN FIX */
+        /* AREA PEMUTAR VIDEO ASLI FULL SCREEN */
         .video-container {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             background-color: #000000;
             display: none;
             z-index: 1;
         }
         
-        /* Memaksa iframe memenuhi layar HP secara agresif */
-        iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* Memaksa video HP memenuhi seluruh layar secara total tanpa sisa hitam */
+        video {
             width: 100%;
             height: 100%;
-            border: none;
-            object-fit: cover; /* Membantu video vertikal mengisi area layar */
+            object-fit: cover; /* Ini kunci utama pemotong kotak hitam */
         }
     </style>
 </head>
@@ -213,8 +209,11 @@
     </div>
 
     <div id="videoArea" class="video-container">
-        <!-- Menggunakan mode preview yang dipaksa mengisi rasio layar -->
-        <iframe id="player" src="" allow="autoplay" allowfullscreen></iframe>
+        <!-- Menggunakan tag video HTML5 murni yang tersimpan di GitHub -->
+        <video id="myVideo" playsinline loop>
+            <source src="undangan.mp4" type="video/mp4">
+            Browser Anda tidak mendukung pemutar video ini.
+        </video>
     </div>
 
     <script>
@@ -243,9 +242,9 @@
             var videoArea = document.getElementById("videoArea");
             videoArea.style.display = "block";
 
-            // Menggunakan setelan tautan preview Google Drive yang dimaksimalkan untuk layar mobile
-            var player = document.getElementById("player");
-            player.src = "https://drive.google.com/file/d/1mG4_VruVqyNaQR0QKUcf8NL3fjbpL28fPcjrErcg91U/preview?autoplay=1";
+            // Jalankan video secara otomatis langsung dari server GitHub Anda
+            var video = document.getElementById("myVideo");
+            video.play();
 
             var cover = document.getElementById("cover");
             
