@@ -174,7 +174,7 @@
             to { transform: scale(4); opacity: 0; }
         }
 
-        /* WRAPPER UTAMA SETELAH DIBUKA (Bisa Di-scroll) */
+        /* WRAPPER UTAMA SETELAH DIBUKA */
         .main-content-wrapper {
             display: none;
             width: 100%;
@@ -204,7 +204,7 @@
         /* KONTEN MAPS YANG MUNCUL SAAT DI-SCROLL KE BAWAH */
         .maps-section {
             position: relative;
-            margin-top: 100vh; /* Memaksa bagian maps berada di bawah video */
+            margin-top: 100vh;
             z-index: 2;
             width: 100%;
             background: linear-gradient(to bottom, rgba(253,251,247,0.95) 0%, #ede8df 100%);
@@ -263,7 +263,7 @@
             transform: translateY(-2px);
         }
 
-        /* PETUNJUK UTK SCROLL DI ATAS VIDEO */
+        /* PETUNJUK UTK SCROLL DENGAN LATAR TRANSPARAN PREMIUM (SUDAH DIPERBAIKI) */
         .scroll-hint {
             position: fixed;
             bottom: 25px;
@@ -271,13 +271,19 @@
             transform: translateX(-50%);
             z-index: 1;
             color: #ffffff;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            padding: 10px 22px;
+            background-color: rgba(0, 0, 0, 0.5); /* Hitam transparan tipis ala reels */
+            border-radius: 20px;
+            backdrop-filter: blur(4px); /* Efek blur kaca blur di belakangnya */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             animation: bounce 2s infinite;
             pointer-events: none;
-            opacity: 0.8;
+            opacity: 0.9;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         @keyframes bounce {
@@ -320,7 +326,7 @@
         </div>
     </div>
 
-    <!-- MAIN WRAPPER (AKAN AKTIF SETELAH UNDANGAN DIBUKA) -->
+    <!-- MAIN WRAPPER -->
     <div id="mainWrapper" class="main-content-wrapper">
         
         <!-- VIDEO BACKGROUND SECTION -->
@@ -331,12 +337,12 @@
             </video>
         </div>
 
-        <!-- PETUNJUK SCROLL BIAR TAMU TAHU BISA DI-SCROLL -->
+        <!-- PETUNJUK SCROLL PREMIUM -->
         <div id="scrollHint" class="scroll-hint">
-            ▼ Gulir ke bawah untuk lokasi
+            ▼ LOKASI ACARA (GULIR KE BAWAH)
         </div>
 
-        <!-- GOOGLE MAPS SECTION (DI BAWAH VIDEO) -->
+        <!-- GOOGLE MAPS SECTION -->
         <div class="maps-section">
             <div class="maps-container">
                 <div class="maps-title">Lokasi Acara</div>
@@ -344,7 +350,6 @@
                     Kehadiran Bapak/Ibu/Saudara/i merupakan pelengkap kebahagiaan kami.<br>
                     Klik tombol di bawah untuk membuka petunjuk jalan menuju rumah kami via Google Maps.
                 </p>
-                <!-- Link Maps Asli Anda -->
                 <a href="https://maps.app.goo.gl/GFUSHVVayi59fsnn6?g_st=ic" target="_blank" class="btn-maps">
                     📍 BUKA GOOGLE MAPS
                 </a>
@@ -376,10 +381,8 @@
             ripple.style.left = x + "px";
             ripple.style.top = y + "px";
 
-            // Buka akses scroll pada body halaman
             document.body.classList.remove("body-locked");
             
-            // Tampilkan seluruh konten utama wrapper
             var mainWrapper = document.getElementById("mainWrapper");
             mainWrapper.style.display = "block";
 
@@ -399,14 +402,13 @@
             }, 200);
         }
 
-        // Menghilangkan teks petunjuk gulir "▼ Gulir ke bawah" jika pengguna sudah mulai men-scroll halaman
         window.onscroll = function() {
             var hint = document.getElementById("scrollHint");
             if (window.pageYOffset > 50) {
                 hint.style.opacity = "0";
                 hint.style.transition = "opacity 0.5s ease";
             } else {
-                hint.style.opacity = "0.8";
+                hint.style.opacity = "0.9";
             }
         };
     </script>
