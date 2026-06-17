@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Undangan Syukuran 7 Bulan - Latip & Hani</title>
     <!-- Import Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
             width: 100%;
             height: 100%;
             font-family: 'Montserrat', sans-serif;
-            background-color: #fcfbfa;
+            background-color: #f5f3ee;
             overflow: hidden;
             -webkit-font-smoothing: antialiased;
         }
@@ -41,21 +41,32 @@
             z-index: 9999;
             transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
             text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
         }
         
-        /* CONTAINER DENGAN BINGKAI MEWAH (FRAMED CARD STYLE) */
+        /* CONTAINER DENGAN BINGKAI MEWAH (RESPONSIF) */
         .container {
             background-color: #ffffff;
-            padding: 40px 24px;
+            padding: 30px 20px;
             max-width: 420px;
-            width: 90%;
+            width: 100%;
+            max-height: 96vh;
+            overflow-y: auto;
             box-sizing: border-box;
             position: relative;
             z-index: 2;
             border-radius: 20px;
-            border: 1px solid #c2a383; /* Bingkai Luar */
+            border: 1px solid #c2a383;
             box-shadow: 0 15px 45px rgba(11, 57, 53, 0.08);
             animation: containerAppear 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            
+            /* Sembunyikan scrollbar bawaan container jika konten melebih batas di hp kecil */
+            -ms-overflow-style: none;  
+            scrollbar-width: none; 
+        }
+        .container::-webkit-scrollbar {
+            display: none;
         }
 
         /* Garis Bingkai Dalam (Inner Border) */
@@ -78,21 +89,21 @@
 
         /* ORNAMEN DEKORASI */
         .divider-flower {
-            font-size: 14px;
+            font-size: 12px;
             color: #c2a383;
-            margin: 10px 0;
+            margin: 8px 0;
             letter-spacing: 4px;
             opacity: 0.8;
         }
 
         /* BINGKAI FOTO ELEGAN */
         .foto-container {
-            width: 140px;
-            height: 155px;
-            margin: 15px auto;
-            border-radius: 40px;
+            width: 125px;
+            height: 140px;
+            margin: 10px auto;
+            border-radius: 35px;
             border: 1px solid #c2a383;
-            padding: 7px;
+            padding: 6px;
             box-sizing: border-box;
             background-color: transparent;
             box-shadow: 0 10px 25px rgba(186, 171, 150, 0.15);
@@ -101,41 +112,42 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 32px;
+            border-radius: 28px;
         }
 
         /* NAMA PASANGAN UTAMA */
         .nama-pasangan {
             font-family: 'Playfair Display', serif;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
             color: #0b3935;
-            margin: 15px 0 5px 0;
+            margin: 12px 0 4px 0;
             letter-spacing: 0.5px;
         }
 
         .text-biasa {
-            font-size: 12px;
+            font-size: 11.5px;
             color: #617370;
-            margin: 6px 0;
+            margin: 5px 0;
             letter-spacing: 0.5px;
         }
 
-        /* JUDUL UTAMA - BARU: SERIF ITALIC SANGAT TERBACA & ANGGUN */
+        /* JUDUL UTAMA - RESPONSIVE SIZE */
         .main-title {
             font-family: 'Playfair Display', serif;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             font-style: italic;
             color: #0b3935;
-            margin: 12px 0 24px 0;
+            margin: 10px 0 20px 0;
             line-height: 1.2;
             letter-spacing: 0.5px;
+            padding: 0 5px;
         }
 
         .tanggal-teks {
             font-family: 'Playfair Display', serif;
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 600;
             color: #0b3935;
             margin: 4px 0;
@@ -143,20 +155,20 @@
         }
 
         .yth-text {
-            font-size: 10px;
+            font-size: 9.5px;
             color: #8c9c99;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 4px;
-            margin-top: 20px;
+            margin-bottom: 3px;
+            margin-top: 15px;
         }
 
         .nama-tamu {
-            font-size: 16px;
+            font-size: 15px;
             color: #2c3e3b;
             font-weight: 600;
             margin-top: 0px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             line-height: 1.4;
             font-family: 'Playfair Display', serif;
         }
@@ -168,7 +180,7 @@
             cursor: pointer;
             background-color: #0b3935;
             color: #ffffff;
-            padding: 13px 36px;
+            padding: 12px 32px;
             border-radius: 30px;
             font-weight: 600;
             font-size: 11px;
@@ -202,9 +214,9 @@
 
         /* AREA COUNTDOWN DI BAWAH TOMBOL WITH EXTRA SPACE */
         .countdown-wrapper {
-            margin: 35px auto 0 auto;
-            max-width: 300px;
-            padding-top: 20px;
+            margin: 25px auto 0 auto;
+            max-width: 280px;
+            padding-top: 15px;
             border-top: 1px solid rgba(194, 163, 131, 0.25);
             position: relative;
             z-index: 3;
@@ -213,17 +225,17 @@
         .countdown-container {
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 14px;
         }
 
         .countdown-box {
             text-align: center;
-            min-width: 45px;
+            min-width: 42px;
         }
 
         .countdown-number {
             font-family: 'Playfair Display', serif;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
             color: #0b3935;
             display: block;
@@ -231,7 +243,7 @@
         }
 
         .countdown-label {
-            font-size: 9px;
+            font-size: 8.5px;
             color: #8c9c99;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -409,7 +421,27 @@
         }
         .btn-calendar:hover { background-color: #f7f5f0; transform: translateY(-1px); }
 
-        @media screen and (min-width: 600px) {
+        /* --- MEDIA QUERY MEDIA DISPLAY LAYOUT UTAMA --- */
+        @media screen and (min-width: 480px) {
+            .container {
+                padding: 40px 24px;
+            }
+            .main-title {
+                font-size: 28px;
+            }
+            .foto-container {
+                width: 140px;
+                height: 155px;
+            }
+            .countdown-number {
+                font-size: 20px;
+            }
+            .countdown-label {
+                font-size: 9px;
+            }
+        }
+
+        @media screen and (min-width: 768px) {
             video { max-width: 450px; box-shadow: 0 0 35px rgba(0,0,0,0.7); }
             .maps-section { left: 50%; transform: translateX(-50%); max-width: 450px; }
         }
@@ -435,7 +467,7 @@
             <div class="nama-pasangan">Abdul latip & Hani Fauziah</div>
             <p class="text-biasa">Menyelenggarakan acara,</p>
             
-            <!-- Judul Menggunakan Font Baru -->
+            <!-- Judul Menggunakan Font Serif Premium -->
             <h1 class="main-title">Syukuran 7 Bulan Kehamilan</h1>
             
             <p class="text-biasa">Pada Hari,</p>
@@ -451,7 +483,7 @@
 
             <!-- Hitung Mundur -->
             <div class="countdown-wrapper">
-                <p class="text-biasa" style="font-size: 10px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Acara Dimulai Dalam</p>
+                <p class="text-biasa" style="font-size: 9.5px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Acara Dimulai Dalam</p>
                 <div class="countdown-container">
                     <div class="countdown-box">
                         <span id="hari" class="countdown-number">00</span>
