@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Undangan Syukuran 7 Bulan - Latip & Hani</title>
-    <!-- Import Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
@@ -250,7 +249,7 @@
             display: block;
         }
 
-        /* MAIN WRAPPER */
+        /* MAIN WRAPPER (SISTEM LAYOUT UTAMA) */
         .main-content-wrapper {
             display: none;
             width: 100%;
@@ -259,24 +258,26 @@
             background-color: #000000;
         }
 
-        /* PERBAIKAN: Video pembungkus dikunci mutlak memenuhi layar HP tanpa celah */
+        /* KUNCI UTAMA: Memaksa area video membungkus layar penuh tanpa cela di HP */
         .video-container {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
             background-color: #000000;
             z-index: 1;
             overflow: hidden;
         }
         
-        /* PERBAIKAN: Properti diatur agar memaksa video menjadi full-bleed/cover di smartphone */
+        /* KUNCI UTAMA: Memotong sisi video secara otomatis & cerdas agar full bleed di smartphone */
         video {
             display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Memotong sisi video agar pas memenuhi rasio layar HP manapun */
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important; /* Memaksa video menutupi seluruh layar HP apa saja */
             object-position: center center;
         }
 
@@ -443,7 +444,7 @@
             }
         }
 
-        /* Di PC tampilan video dikunci menyerupai layar HP di tengah layar agar estetik */
+        /* Di PC, tampilan video dikunci menyerupai rasio HP vertikal di tengah layar agar estetik */
         @media screen and (min-width: 768px) {
             .video-container { 
                 left: 50%; 
@@ -457,19 +458,15 @@
 </head>
 <body class="body-locked">
 
-    <!-- COVERS SCREEN -->
     <div id="cover" class="cover-screen">
         <div class="container">
             
-            <!-- Ornamen Atas -->
             <div class="divider-flower">✦ ✦ ✦</div>
 
-            <!-- Frame Foto -->
             <div class="foto-container">
                 <img src="https://www.linkundangan.com/invfiles/UDG202606170120/img/F20260617-6a320c9de9ec3.jpeg" alt="Abdul latip & Hani Fauziah">
             </div>
 
-            <!-- Ornamen Tengah -->
             <div class="divider-flower">✦ ✦ ✦</div>
 
             <div class="nama-pasangan">Abdul latip & Hani Fauziah</div>
@@ -483,12 +480,10 @@
             <p class="yth-text">Kepada Yth.</p>
             <div id="namaTamu" class="nama-tamu">Bapak/Ibu/Saudara/i</div>
             
-            <!-- Tombol Buka Undangan -->
             <button onclick="bukaUndangan(event)" class="btn-buka">
                 📩 BUKA UNDANGAN
             </button>
 
-            <!-- Hitung Mundur -->
             <div class="countdown-wrapper">
                 <p class="text-biasa" style="font-size: 9.5px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Acara Dimulai Dalam</p>
                 <div class="countdown-container">
@@ -514,33 +509,27 @@
         </div>
     </div>
 
-    <!-- MAIN WRAPPER -->
     <div id="mainWrapper" class="main-content-wrapper">
         
-        <!-- VIDEO BACKGROUND SECTION -->
         <div class="video-container">
-            <video id="myVideo" playsinline loop muted controlslist="nodownload">
+            <video id="myVideo" playsinline webkit-playsinline loop muted controlslist="nodownload">
                 <source src="undangan.mp4" type="video/mp4">
             </video>
         </div>
 
-        <!-- MUSIK CADANGAN ELEMEN AUDIO -->
         <audio id="myAudio" loop>
             <source src="audio.mp3" type="audio/mp3">
         </audio>
 
-        <!-- TOMBOL DI ATAS VIDEO -->
         <button id="triggerBtn" onclick="tampilkanLokasi()" class="btn-trigger-maps">
             📍 Info Acara & Lokasi
         </button>
 
-        <!-- GOOGLE MAPS PANEL SECTION (SLIDE UP) -->
         <div id="mapsPanel" class="maps-section">
             <div class="maps-content-scroller">
                 <div class="maps-container">
                     <button onclick="tutupLokasi()" class="btn-close-maps">✕</button>
                     
-                    <!-- INFORMASI TEKS DIGITAL -->
                     <div class="info-title">Detail Acara</div>
                     <div class="info-detail-box">
                         📅 <b>Hari / Tanggal:</b> Minggu, 21 Juni 2026<br>
@@ -548,7 +537,6 @@
                         📍 <b>Alamat:</b> Jl. Raya Kalimulya, Gg. Pedati / Jl. H. Thabronih, RT 02/04 No. 29, Kel. Kalimulya, Kec. Cilodong.
                     </div>
                     
-                    <!-- TOMBOL AKSI GOOGLE MAPS & KALENDER -->
                     <div class="maps-title">Navigasi Lokasi</div>
                     <div class="button-group">
                         <a href="https://maps.app.goo.gl/GFUSHVVayi59fsnn6?g_st=ic" target="_blank" class="btn-action btn-maps">
