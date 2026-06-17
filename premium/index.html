@@ -61,7 +61,6 @@
             box-shadow: 0 15px 45px rgba(11, 57, 53, 0.08);
             animation: containerAppear 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
             
-            /* Sembunyikan scrollbar bawaan container jika konten melebih batas di hp kecil */
             -ms-overflow-style: none;  
             scrollbar-width: none; 
         }
@@ -132,7 +131,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* JUDUL UTAMA - RESPONSIVE SIZE */
+        /* JUDUL UTAMA */
         .main-title {
             font-family: 'Playfair Display', serif;
             font-size: 24px;
@@ -257,25 +256,28 @@
             width: 100%;
             height: 100%;
             position: relative;
-            background-color: #1a1a1a;
+            background-color: #000000;
         }
 
+        /* PERBAIKAN: Video pembungkus dikunci mutlak memenuhi layar HP tanpa celah */
         .video-container {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 100vw;
             height: 100vh;
             background-color: #000000;
             z-index: 1;
+            overflow: hidden;
         }
         
+        /* PERBAIKAN: Properti diatur agar memaksa video menjadi full-bleed/cover di smartphone */
         video {
             display: block;
             width: 100%;
             height: 100%;
-            margin: 0 auto;
-            object-fit: cover;
+            object-fit: cover; /* Memotong sisi video agar pas memenuhi rasio layar HP manapun */
+            object-position: center center;
         }
 
         /* TOMBOL PEMICU MELAYANG */
@@ -421,7 +423,7 @@
         }
         .btn-calendar:hover { background-color: #f7f5f0; transform: translateY(-1px); }
 
-        /* --- MEDIA QUERY MEDIA DISPLAY LAYOUT UTAMA --- */
+        /* --- MEDIA QUERY --- */
         @media screen and (min-width: 480px) {
             .container {
                 padding: 40px 24px;
@@ -441,8 +443,14 @@
             }
         }
 
+        /* Di PC tampilan video dikunci menyerupai layar HP di tengah layar agar estetik */
         @media screen and (min-width: 768px) {
-            video { max-width: 450px; box-shadow: 0 0 35px rgba(0,0,0,0.7); }
+            .video-container { 
+                left: 50%; 
+                transform: translateX(-50%); 
+                max-width: 450px; 
+                box-shadow: 0 0 35px rgba(0,0,0,0.7); 
+            }
             .maps-section { left: 50%; transform: translateX(-50%); max-width: 450px; }
         }
     </style>
@@ -467,7 +475,6 @@
             <div class="nama-pasangan">Abdul latip & Hani Fauziah</div>
             <p class="text-biasa">Menyelenggarakan acara,</p>
             
-            <!-- Judul Menggunakan Font Serif Premium -->
             <h1 class="main-title">Syukuran 7 Bulan Kehamilan</h1>
             
             <p class="text-biasa">Pada Hari,</p>
