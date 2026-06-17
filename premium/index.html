@@ -7,7 +7,7 @@
     <!-- Import Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 
     <style>
         body, html {
@@ -16,7 +16,7 @@
             width: 100%;
             height: 100%;
             font-family: 'Montserrat', sans-serif;
-            background-color: #f7f5f0;
+            background-color: #fcfbfa;
             overflow: hidden;
             -webkit-font-smoothing: antialiased;
         }
@@ -34,7 +34,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #fdfbf7 0%, #ede8df 100%);
+            background-color: #f5f3ee;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -43,123 +43,153 @@
             text-align: center;
         }
         
+        /* CONTAINER DENGAN BINGKAI MEWAH (FRAMED CARD STYLE) */
         .container {
             background-color: #ffffff;
-            padding: 50px 35px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(140, 123, 101, 0.15);
+            padding: 40px 24px;
             max-width: 420px;
-            width: 88%;
-            border: 1px solid rgba(212, 197, 171, 0.5);
+            width: 90%;
             box-sizing: border-box;
             position: relative;
-            animation: containerAppear 1.2s ease-out forwards;
+            z-index: 2;
+            border-radius: 20px;
+            border: 1px solid #c2a383; /* Bingkai Luar */
+            box-shadow: 0 15px 45px rgba(11, 57, 53, 0.08);
+            animation: containerAppear 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
+        /* Garis Bingkai Dalam (Inner Border) */
         .container::before {
             content: '';
             position: absolute;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
-            border: 1px solid #d4c5ab;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(194, 163, 131, 0.4);
             border-radius: 12px;
             pointer-events: none;
-            opacity: 0.6;
         }
 
         @keyframes containerAppear {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .sub-title-arabic {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 20px;
-            color: #8c7b65;
-            margin-bottom: 5px;
-            font-weight: 400;
-        }
-
-        .main-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 26px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            color: #2c2c2c;
-            margin: 10px 0 0 0;
-        }
-
-        .sub-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            color: #8c7b65;
-            margin-top: 2px;
-            margin-bottom: 30px;
+        /* ORNAMEN DEKORASI */
+        .divider-flower {
+            font-size: 14px;
+            color: #c2a383;
+            margin: 10px 0;
             letter-spacing: 4px;
-            font-weight: 400;
+            opacity: 0.8;
         }
 
+        /* BINGKAI FOTO ELEGAN */
+        .foto-container {
+            width: 140px;
+            height: 155px;
+            margin: 15px auto;
+            border-radius: 40px;
+            border: 1px solid #c2a383;
+            padding: 7px;
+            box-sizing: border-box;
+            background-color: transparent;
+            box-shadow: 0 10px 25px rgba(186, 171, 150, 0.15);
+        }
+        .foto-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 32px;
+        }
+
+        /* NAMA PASANGAN UTAMA */
         .nama-pasangan {
             font-family: 'Playfair Display', serif;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 600;
-            color: #4a4a4a;
-            margin: 15px 0;
+            color: #0b3935;
+            margin: 15px 0 5px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .text-biasa {
+            font-size: 12px;
+            color: #617370;
+            margin: 6px 0;
+            letter-spacing: 0.5px;
+        }
+
+        /* JUDUL UTAMA - BARU: SERIF ITALIC SANGAT TERBACA & ANGGUN */
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
             font-style: italic;
+            color: #0b3935;
+            margin: 12px 0 24px 0;
+            line-height: 1.2;
+            letter-spacing: 0.5px;
+        }
+
+        .tanggal-teks {
+            font-family: 'Playfair Display', serif;
+            font-size: 19px;
+            font-weight: 600;
+            color: #0b3935;
+            margin: 4px 0;
+            letter-spacing: 0.5px;
         }
 
         .yth-text {
-            font-size: 13px;
-            color: #8a8a8a;
-            letter-spacing: 1px;
+            font-size: 10px;
+            color: #8c9c99;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
+            margin-top: 20px;
         }
 
         .nama-tamu {
-            font-size: 18px;
-            color: #3a3a3a;
+            font-size: 16px;
+            color: #2c3e3b;
             font-weight: 600;
-            margin-top: 5px;
-            margin-bottom: 35px;
+            margin-top: 0px;
+            margin-bottom: 24px;
             line-height: 1.4;
+            font-family: 'Playfair Display', serif;
         }
 
+        /* TOMBOL BUKA UNDANGAN */
         .btn-buka {
             position: relative;
             display: inline-block;
             cursor: pointer;
-            background-color: #8c7b65;
+            background-color: #0b3935;
             color: #ffffff;
-            padding: 14px 40px;
+            padding: 13px 36px;
             border-radius: 30px;
             font-weight: 600;
-            font-size: 14px;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 15px rgba(140, 123, 101, 0.4);
+            font-size: 11px;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 20px rgba(11, 57, 53, 0.25);
             border: none;
             outline: none;
             overflow: hidden;
+            z-index: 3;
         }
 
         .btn-buka:hover {
-            background-color: #736450;
-            box-shadow: 0 8px 20px rgba(140, 123, 101, 0.6);
+            background-color: #062421;
             transform: translateY(-2px);
-        }
-
-        .btn-buka:active {
-            transform: translateY(1px) scale(0.95);
-            box-shadow: 0 3px 10px rgba(140, 123, 101, 0.4);
+            box-shadow: 0 8px 25px rgba(11, 57, 53, 0.35);
         }
 
         .ripple {
             position: absolute;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.4);
             border-radius: 50%;
             transform: scale(0);
             animation: rippleEffect 0.6s linear;
@@ -168,6 +198,45 @@
 
         @keyframes rippleEffect {
             to { transform: scale(4); opacity: 0; }
+        }
+
+        /* AREA COUNTDOWN DI BAWAH TOMBOL WITH EXTRA SPACE */
+        .countdown-wrapper {
+            margin: 35px auto 0 auto;
+            max-width: 300px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(194, 163, 131, 0.25);
+            position: relative;
+            z-index: 3;
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .countdown-box {
+            text-align: center;
+            min-width: 45px;
+        }
+
+        .countdown-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #0b3935;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .countdown-label {
+            font-size: 9px;
+            color: #8c9c99;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+            display: block;
         }
 
         /* MAIN WRAPPER */
@@ -205,14 +274,14 @@
             transform: translateX(-50%);
             z-index: 5;
             color: #ffffff;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
-            letter-spacing: 1.5px;
-            padding: 12px 26px;
-            background-color: rgba(140, 123, 101, 0.95);
-            border-radius: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            letter-spacing: 2px;
+            padding: 14px 30px;
+            background-color: rgba(11, 57, 53, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
@@ -220,24 +289,24 @@
         }
 
         .btn-trigger-maps:hover {
-            background-color: rgba(115, 100, 80, 1);
+            background-color: #0b3935;
             transform: translateX(-50%) translateY(-2px);
         }
 
-        /* PANEL LOKASI DAN INFORMASI CADANGAN (SLIDE UP) */
+        /* PANEL LOKASI (SLIDE UP) */
         .maps-section {
             position: fixed;
             bottom: -100vh;
             left: 0;
             z-index: 10;
             width: 100%;
-            height: 85vh; /* Panel dibuat tinggi agar muat info teks tambahan */
-            background: linear-gradient(to bottom, rgba(253,251,247,0.99) 0%, #f4f0e6 100%);
-            box-shadow: 0 -15px 35px rgba(0,0,0,0.4);
-            border-top-left-radius: 30px;
-            border-top-right-radius: 30px;
+            height: 80vh;
+            background: linear-gradient(to bottom, #fdfbf7 0%, #f4f0e6 100%);
+            box-shadow: 0 -15px 35px rgba(0,0,0,0.3);
+            border-top-left-radius: 35px;
+            border-top-right-radius: 35px;
             transition: bottom 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            overflow-y: auto; /* Mengizinkan scroll di dalam panel jika layar kecil */
+            overflow-y: auto;
         }
 
         .maps-section.show {
@@ -251,98 +320,97 @@
 
         .maps-container {
             background-color: #ffffff;
-            padding: 30px 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(140, 123, 101, 0.05);
-            max-width: 400px;
+            padding: 35px 24px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(140, 123, 101, 0.06);
+            max-width: 390px;
             width: 88%;
             margin: 0 auto;
-            border: 1px solid rgba(212, 197, 171, 0.3);
+            border: 1px solid rgba(212, 197, 171, 0.25);
             box-sizing: border-box;
             position: relative;
         }
 
         .btn-close-maps {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 16px;
+            right: 18px;
             background: none;
             border: none;
-            font-size: 20px;
-            color: #aaaaaa;
+            font-size: 18px;
+            color: #b0b0b0;
             cursor: pointer;
+            transition: color 0.2s;
         }
+        .btn-close-maps:hover { color: #0b3935; }
 
-        /* TEKS DETAIL ACARA DIGITAL (CADANGAN SINYAL LEMOT) */
         .info-title {
             font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            color: #8c7b65;
+            font-size: 22px;
+            color: #0b3935;
             font-weight: 600;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
         }
 
         .info-detail-box {
-            font-size: 14px;
-            color: #4a4a4a;
+            font-size: 13.5px;
+            color: #4a5452;
             line-height: 1.8;
-            margin-bottom: 25px;
-            background-color: #faf9f6;
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 3px solid #d4c5ab;
+            margin-bottom: 30px;
+            background-color: #fbfaf7;
+            padding: 18px;
+            border-radius: 16px;
+            border-left: 4px solid #0b3935;
             text-align: left;
         }
 
         .maps-title {
             font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            color: #2c2c2c;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            font-size: 16px;
+            color: #0b3935;
+            margin-bottom: 15px;
             font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
-        /* DESAIN GROUP TOMBOL AKSI */
         .button-group {
             display: flex;
             flex-direction: column;
             gap: 12px;
             align-items: center;
-            margin-top: 15px;
         }
 
         .btn-action {
             display: inline-block;
             text-decoration: none;
-            width: 85%;
-            padding: 13px 0;
-            border-radius: 25px;
+            width: 90%;
+            padding: 14px 0;
+            border-radius: 30px;
             font-weight: 600;
-            font-size: 13px;
-            letter-spacing: 1px;
+            font-size: 12px;
+            letter-spacing: 1.5px;
             transition: all 0.3s ease;
             text-transform: uppercase;
+            text-align: center;
         }
 
         .btn-maps {
-            background-color: #8c7b65;
+            background-color: #0b3935;
             color: #ffffff;
-            box-shadow: 0 5px 15px rgba(140, 123, 101, 0.3);
+            box-shadow: 0 4px 15px rgba(11, 57, 53, 0.2);
         }
+        .btn-maps:hover { background-color: #062421; transform: translateY(-1px); }
 
         .btn-calendar {
             background-color: #ffffff;
-            color: #8c7b65;
-            border: 1px solid #8c7b65;
+            color: #0b3935;
+            border: 1px solid #0b3935;
         }
-
-        .btn-maps:hover { background-color: #736450; }
-        .btn-calendar:hover { background-color: #faf9f6; }
+        .btn-calendar:hover { background-color: #f7f5f0; transform: translateY(-1px); }
 
         @media screen and (min-width: 600px) {
-            video { max-width: 450px; box-shadow: 0 0 30px rgba(0,0,0,0.8); }
+            video { max-width: 450px; box-shadow: 0 0 35px rgba(0,0,0,0.7); }
             .maps-section { left: 50%; transform: translateX(-50%); max-width: 450px; }
         }
     </style>
@@ -352,20 +420,58 @@
     <!-- COVERS SCREEN -->
     <div id="cover" class="cover-screen">
         <div class="container">
-            <p class="sub-title-arabic">Walimatul Hamli</p>
-            <h1 class="main-title">UNDANGAN SYUKURAN</h1>
-            <h2 class="sub-title">7 BULANAN</h2>
             
-            <div class="nama-pasangan">Latip & Hani</div>
+            <!-- Ornamen Atas -->
+            <div class="divider-flower">✦ ✦ ✦</div>
+
+            <!-- Frame Foto -->
+            <div class="foto-container">
+                <img src="https://www.linkundangan.com/invfiles/UDG202606170120/img/F20260617-6a320c9de9ec3.jpeg" alt="Abdul latip & Hani Fauziah">
+            </div>
+
+            <!-- Ornamen Tengah -->
+            <div class="divider-flower">✦ ✦ ✦</div>
+
+            <div class="nama-pasangan">Abdul latip & Hani Fauziah</div>
+            <p class="text-biasa">Menyelenggarakan acara,</p>
             
-            <hr style="width: 40px; border: 0; border-top: 1px solid #d4c5ab; margin: 25px auto;">
+            <!-- Judul Menggunakan Font Baru -->
+            <h1 class="main-title">Syukuran 7 Bulan Kehamilan</h1>
+            
+            <p class="text-biasa">Pada Hari,</p>
+            <div class="tanggal-teks">Minggu, 21 Juni 2026</div>
 
             <p class="yth-text">Kepada Yth.</p>
             <div id="namaTamu" class="nama-tamu">Bapak/Ibu/Saudara/i</div>
             
+            <!-- Tombol Buka Undangan -->
             <button onclick="bukaUndangan(event)" class="btn-buka">
                 📩 BUKA UNDANGAN
             </button>
+
+            <!-- Hitung Mundur -->
+            <div class="countdown-wrapper">
+                <p class="text-biasa" style="font-size: 10px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Acara Dimulai Dalam</p>
+                <div class="countdown-container">
+                    <div class="countdown-box">
+                        <span id="hari" class="countdown-number">00</span>
+                        <span class="countdown-label">Hari</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="jam" class="countdown-number">00</span>
+                        <span class="countdown-label">Jam</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="menit" class="countdown-number">00</span>
+                        <span class="countdown-label">Menit</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="detik" class="countdown-number">00</span>
+                        <span class="countdown-label">Detik</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -374,7 +480,6 @@
         
         <!-- VIDEO BACKGROUND SECTION -->
         <div class="video-container">
-            <!-- Ditambahkan mute otomatis di video agar musik cadangan .mp3 lancar tanpa bentrok -->
             <video id="myVideo" playsinline loop muted controlslist="nodownload">
                 <source src="undangan.mp4" type="video/mp4">
             </video>
@@ -396,7 +501,7 @@
                 <div class="maps-container">
                     <button onclick="tutupLokasi()" class="btn-close-maps">✕</button>
                     
-                    <!-- 1. INFORMASI TEKS DIGITAL (CADANGAN) -->
+                    <!-- INFORMASI TEKS DIGITAL -->
                     <div class="info-title">Detail Acara</div>
                     <div class="info-detail-box">
                         📅 <b>Hari / Tanggal:</b> Minggu, 21 Juni 2026<br>
@@ -404,15 +509,13 @@
                         📍 <b>Alamat:</b> Jl. Raya Kalimulya, Gg. Pedati / Jl. H. Thabronih, RT 02/04 No. 29, Kel. Kalimulya, Kec. Cilodong.
                     </div>
                     
-                    <!-- 2. TOMBOL AKSI GOOGLE MAPS & KALENDER -->
+                    <!-- TOMBOL AKSI GOOGLE MAPS & KALENDER -->
                     <div class="maps-title">Navigasi Lokasi</div>
                     <div class="button-group">
-                        <!-- Tombol Buka Google Maps -->
                         <a href="https://maps.app.goo.gl/GFUSHVVayi59fsnn6?g_st=ic" target="_blank" class="btn-action btn-maps">
                             📍 Buka Google Maps
                         </a>
                         
-                        <!-- Tombol Simpan Tanggal ke Google Calendar Otomatis (Minggu, 21 Juni 2026) -->
                         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Syukuran+7+Bulanan+Latip+%26+Hani&dates=20260621T123000/20260621T160000&details=Acara+Syukuran+7+Bulanan+(Walimatul+Hamli)+Kehamilan+Hani.&location=Jl.+Raya+Kalimulya,+Gg.+Pedati,+RT+02/04+No.+29,+Cilodong" target="_blank" class="btn-action btn-calendar">
                             📅 Simpan ke Kalender
                         </a>
@@ -430,6 +533,36 @@
             if (nama) {
                 document.getElementById("namaTamu").innerText = decodeURIComponent(nama);
             }
+            startCountdown();
+        }
+
+        // FUNGSI HITUNG MUNDUR (COUNTDOWN) otomatis ke 21 Juni 2026 pukul 13:00
+        function startCountdown() {
+            const targetDate = new Date("June 21, 2026 13:00:00").getTime();
+
+            const interval = setInterval(function() {
+                const now = new Date().getTime();
+                const difference = targetDate - now;
+
+                if (difference < 0) {
+                    clearInterval(interval);
+                    document.getElementById("hari").innerText = "00";
+                    document.getElementById("jam").innerText = "00";
+                    document.getElementById("menit").innerText = "00";
+                    document.getElementById("detik").innerText = "00";
+                    return;
+                }
+
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById("hari").innerText = days < 10 ? "0" + days : days;
+                document.getElementById("jam").innerText = hours < 10 ? "0" + hours : hours;
+                document.getElementById("menit").innerText = minutes < 10 ? "0" + minutes : minutes;
+                document.getElementById("detik").innerText = seconds < 10 ? "0" + seconds : seconds;
+            }, 1000);
         }
 
         function bukaUndangan(event) {
@@ -449,11 +582,9 @@
             var mainWrapper = document.getElementById("mainWrapper");
             mainWrapper.style.display = "block";
 
-            // Putar video background
             var video = document.getElementById("myVideo");
             video.play();
 
-            // Jalankan musik audio cadangan secara paksa pasca interaksi tombol (Anti-Mute Browser)
             var audio = document.getElementById("myAudio");
             audio.play().catch(function(error) {
                 console.log("Autoplay dicegah oleh browser, suara menggunakan video bawaan.");
@@ -463,7 +594,7 @@
             
             setTimeout(function() {
                 cover.style.opacity = "0";
-                cover.style.transform = "scale(1.1)";
+                cover.style.transform = "scale(1.05)";
                 
                 setTimeout(function() {
                     cover.style.visibility = "hidden";
